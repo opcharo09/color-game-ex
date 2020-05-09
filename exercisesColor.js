@@ -8,12 +8,20 @@ var h1 = document.querySelector("h1");
 var resetButton = document.querySelector("#reset");
 var modeButtons = document.querySelectorAll(".mode")
 
+
+
 for (var i = 0; i < modeButtons.length; i++) {
     modeButtons[i].addEventListener("click", function() {
         modeButtons[0].classList.remove("selected");
         modeButtons[1].classList.remove("selected");
         this.classList.add("selected");
-        this.textContent === "easy" ? numSquares = 3 : numSquares = 6;
+        if (this.textContent === "easy") {
+            numSquares = 3;
+        } else {
+
+            numSquares = 6;
+        }
+
         reset();
     })
 }
@@ -22,21 +30,23 @@ function reset() {
     colors = generateRandomColors(numSquares);
     // pick new random colors
     pickedColor = pickColor();
-
     // change colors of squares
     colorDisplay.textContent = pickedColor;
     resetButton.textContent = "New Colors"
-        // change the color of the squares
     messageDisplay.textContent = "";
+    // change the color of the squares
     for (var i = 0; i < squares.length; i++) {
         if (colors[i]) {
-            squares[i].style.diplay = "block";
+            squares[i].style.display = "block"
             squares[i].style.background = colors[i];
+
         } else {
-            squares[i].style.diplay = "none";
+            squares[i].style.display = "none"
         }
+
+
     }
-    h1.style.background = "steeleblue";
+    h1.style.background = "steelblue";
 }
 
 
